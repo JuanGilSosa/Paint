@@ -1,21 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package principal.paint.Frames;
-
+import java.awt.Container;
+import java.util.ArrayList;
 /**
  * lunes 11, octubre 2021
  * @author juanm
  */
 
-public class MainFrame extends javax.swing.JFrame {
-
+/**
+ *  Implementa MouseMotionListener 
+ */
+public class MainFrame extends javax.swing.JFrame{
+        
     public MainFrame() {
-        setVisible(true);
+        paitingBoard = new JPanel_PaitingBoard();
+        
         initComponents();
+        addMenuItem(); // Se agregan los items en el Bar Menu 
+        
+        Container c = this.getContentPane();
+        c.addMouseMotionListener(paitingBoard);
+        
+        setVisible(true);
     }
+    
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel_base = new javax.swing.JPanel();
-        jPanel_paitingBoard = new javax.swing.JPanel();
+        jPanel_basePaitingBoard = new javax.swing.JPanel();
         jButton_chooseColor = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -50,28 +59,32 @@ public class MainFrame extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jPanel_colorSelected = new javax.swing.JPanel();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PAINT");
         setResizable(false);
 
-        jPanel_paitingBoard.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel_paitingBoard.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
-        jPanel_paitingBoard.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel_paitingBoard.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel_basePaitingBoard.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
+        jPanel_basePaitingBoard.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel_basePaitingBoard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel_paitingBoardMouseClicked(evt);
+                jPanel_basePaitingBoardMouseClicked(evt);
             }
         });
+        jPanel_basePaitingBoard.add(this.paitingBoard);
+        jPanel_basePaitingBoard.revalidate();
+        jPanel_basePaitingBoard.repaint();
 
-        javax.swing.GroupLayout jPanel_paitingBoardLayout = new javax.swing.GroupLayout(jPanel_paitingBoard);
-        jPanel_paitingBoard.setLayout(jPanel_paitingBoardLayout);
-        jPanel_paitingBoardLayout.setHorizontalGroup(
-            jPanel_paitingBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel_basePaitingBoardLayout = new javax.swing.GroupLayout(jPanel_basePaitingBoard);
+        jPanel_basePaitingBoard.setLayout(jPanel_basePaitingBoardLayout);
+        jPanel_basePaitingBoardLayout.setHorizontalGroup(
+            jPanel_basePaitingBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 873, Short.MAX_VALUE)
         );
-        jPanel_paitingBoardLayout.setVerticalGroup(
-            jPanel_paitingBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel_basePaitingBoardLayout.setVerticalGroup(
+            jPanel_basePaitingBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 573, Short.MAX_VALUE)
         );
 
@@ -86,11 +99,6 @@ public class MainFrame extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(204, 204, 0));
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
-            }
-        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -308,7 +316,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_baseLayout.createSequentialGroup()
-                        .addComponent(jPanel_paitingBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel_basePaitingBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_baseLayout.createSequentialGroup()
                                 .addGap(12, 12, 12)
@@ -359,7 +367,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel_baseLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel_paitingBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_basePaitingBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_baseLayout.createSequentialGroup()
                         .addGroup(jPanel_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,8 +412,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jPanel_colorSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton_chooseColor)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jMenu.setText("Archivo");
+        jMenuBar.add(jMenu);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -422,15 +435,11 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_chooseColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_chooseColorActionPerformed
-        someColor = javax.swing.JColorChooser.showDialog(null, "Elija ", java.awt.Color.WHITE);
+        someColor = javax.swing.JColorChooser.showDialog(null, "Elija", java.awt.Color.WHITE);
         if(someColor != null){
-            this.jPanel_paitingBoard.setBackground(someColor);
+            this.paitingBoard.setBackground(someColor);
         }
     }//GEN-LAST:event_jButton_chooseColorActionPerformed
-
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        
-    }//GEN-LAST:event_jButton1MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         colorSelected(jButton1);
@@ -512,18 +521,27 @@ public class MainFrame extends javax.swing.JFrame {
         colorSelected(jButton20);
     }//GEN-LAST:event_jButton20ActionPerformed
 
-    private void jPanel_paitingBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_paitingBoardMouseClicked
+    private void jPanel_basePaitingBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_basePaitingBoardMouseClicked
         java.awt.Color aux = new java.awt.Color(238, 238, 238);
         java.awt.Color someColor = jPanel_colorSelected.getBackground();
         if(someColor.getRGB() != aux.getRGB()){
-            jPanel_paitingBoard.setBackground(someColor);
+            //jPanel_paitingBoard.setBackground(someColor);
         }
-    }//GEN-LAST:event_jPanel_paitingBoardMouseClicked
-    
+    }//GEN-LAST:event_jPanel_basePaitingBoardMouseClicked
+   
     private void colorSelected(javax.swing.JButton btn){
         this.jPanel_colorSelected.setBackground(btn.getBackground());
     }
-
+    
+    private void addMenuItem(){
+        ArrayList<javax.swing.JMenuItem> items = new ArrayList<>();
+        String[] data = {"Nuevo", "Nueva Ventana", "Abrir", "Guardar", "Guardar Como"};
+        for(String d : data){
+            jMenu.add(new javax.swing.JMenuItem(d));
+        }
+        this.menuItems = items;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -546,9 +564,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton_chooseColor;
+    private javax.swing.JMenu jMenu;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel_base;
+    private javax.swing.JPanel jPanel_basePaitingBoard;
     private javax.swing.JPanel jPanel_colorSelected;
-    private javax.swing.JPanel jPanel_paitingBoard;
     // End of variables declaration//GEN-END:variables
     private java.awt.Color someColor;
+    private ArrayList<javax.swing.JMenuItem> menuItems;
+    private final JPanel_PaitingBoard paitingBoard;
 }
