@@ -5,18 +5,17 @@ package principal.paint.Frames;
  * @author juanm
  */
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener; 
-import java.util.Objects;
 
 public class JPanel_PaitingBoard extends javax.swing.JPanel implements MouseMotionListener{
 
     public JPanel_PaitingBoard() {
+        setBounds(0, 0, 875, 575); // x e y son 0, porque este panel esta sobre otro panel
         x = 0; y = 0;
         initComponents();
-        setBounds(0, 0, 875, 575); // x e y son 0, porque este panel esta sobre otro panel
+        addMouseMotionListener(this);
     }
     
     // Metodos a implementar de MouseMotionListener
@@ -49,17 +48,19 @@ public class JPanel_PaitingBoard extends javax.swing.JPanel implements MouseMoti
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 51, 51));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 875, Short.MAX_VALUE)
+            .addGap(0, 873, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 573, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

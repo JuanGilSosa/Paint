@@ -1,5 +1,4 @@
 package principal.paint.Frames;
-import java.awt.Container;
 import java.util.ArrayList;
 /**
  * lunes 11, octubre 2021
@@ -13,19 +12,14 @@ public class MainFrame extends javax.swing.JFrame{
         
     public MainFrame() {
         paitingBoard = new JPanel_PaitingBoard();
-        
         initComponents();
         addMenuItem(); // Se agregan los items en el Bar Menu 
         
-        Container c = this.getContentPane();
-        c.addMouseMotionListener(paitingBoard);
+        this.loadPanel();
         
         setVisible(true);
     }
-    
-
-    
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,15 +61,12 @@ public class MainFrame extends javax.swing.JFrame{
         setResizable(false);
 
         jPanel_basePaitingBoard.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
-        jPanel_basePaitingBoard.setForeground(new java.awt.Color(0, 0, 0));
         jPanel_basePaitingBoard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_basePaitingBoardMouseClicked(evt);
             }
         });
         jPanel_basePaitingBoard.add(this.paitingBoard);
-        jPanel_basePaitingBoard.revalidate();
-        jPanel_basePaitingBoard.repaint();
 
         javax.swing.GroupLayout jPanel_basePaitingBoardLayout = new javax.swing.GroupLayout(jPanel_basePaitingBoard);
         jPanel_basePaitingBoard.setLayout(jPanel_basePaitingBoardLayout);
@@ -522,11 +513,13 @@ public class MainFrame extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jPanel_basePaitingBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_basePaitingBoardMouseClicked
+        /**
         java.awt.Color aux = new java.awt.Color(238, 238, 238);
         java.awt.Color someColor = jPanel_colorSelected.getBackground();
         if(someColor.getRGB() != aux.getRGB()){
             //jPanel_paitingBoard.setBackground(someColor);
         }
+        */
     }//GEN-LAST:event_jPanel_basePaitingBoardMouseClicked
    
     private void colorSelected(javax.swing.JButton btn){
@@ -534,12 +527,17 @@ public class MainFrame extends javax.swing.JFrame{
     }
     
     private void addMenuItem(){
-        ArrayList<javax.swing.JMenuItem> items = new ArrayList<>();
         String[] data = {"Nuevo", "Nueva Ventana", "Abrir", "Guardar", "Guardar Como"};
         for(String d : data){
             jMenu.add(new javax.swing.JMenuItem(d));
         }
-        this.menuItems = items;
+    }
+    
+    private void loadPanel(){
+        this.jPanel_basePaitingBoard.removeAll();
+        this.jPanel_basePaitingBoard.add(this.paitingBoard);
+        this.jPanel_basePaitingBoard.revalidate();
+        this.jPanel_basePaitingBoard.repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

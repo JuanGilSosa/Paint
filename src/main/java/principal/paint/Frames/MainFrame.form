@@ -195,15 +195,12 @@
                 </TitledBorder>
               </Border>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel_basePaitingBoardMouseClicked"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jPanel_basePaitingBoard.add(this.paitingBoard);&#xa;jPanel_basePaitingBoard.revalidate();&#xa;jPanel_basePaitingBoard.repaint();"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jPanel_basePaitingBoard.add(this.paitingBoard);"/>
           </AuxValues>
 
           <Layout>
