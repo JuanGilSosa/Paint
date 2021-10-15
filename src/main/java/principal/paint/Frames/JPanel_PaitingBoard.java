@@ -32,12 +32,17 @@ public class JPanel_PaitingBoard extends javax.swing.JPanel implements MouseMoti
     
     @Override
     public void paint(Graphics g){
+        g.setColor(colorSelected);
         g.fillOval(x, y, 3, 3);
     }
     
     @Override
     public void setBackground(Color c){
         super.setBackground(c);
+    }
+    
+    public void setColorSelected(Color colorSelected){
+        this.colorSelected = colorSelected;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -68,4 +73,5 @@ public class JPanel_PaitingBoard extends javax.swing.JPanel implements MouseMoti
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
     private Integer x,y;
+    private Color colorSelected;
 }   

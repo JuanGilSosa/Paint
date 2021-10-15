@@ -1,5 +1,6 @@
 package principal.paint.Frames;
 import java.util.ArrayList;
+import principal.paint.Style.Style;
 /**
  * lunes 11, octubre 2021
  * @author juanm
@@ -11,8 +12,11 @@ import java.util.ArrayList;
 public class MainFrame extends javax.swing.JFrame{
         
     public MainFrame() {
+        // Style style = new Style(this);
+        
         paitingBoard = new JPanel_PaitingBoard();
         initComponents();
+        paitingBoard.setColorSelected(jPanel_colorSelected.getBackground());
         addMenuItem(); // Se agregan los items en el Bar Menu 
         
         this.loadPanel();
@@ -61,11 +65,6 @@ public class MainFrame extends javax.swing.JFrame{
         setResizable(false);
 
         jPanel_basePaitingBoard.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
-        jPanel_basePaitingBoard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel_basePaitingBoardMouseClicked(evt);
-            }
-        });
         jPanel_basePaitingBoard.add(this.paitingBoard);
 
         javax.swing.GroupLayout jPanel_basePaitingBoardLayout = new javax.swing.GroupLayout(jPanel_basePaitingBoard);
@@ -426,9 +425,9 @@ public class MainFrame extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_chooseColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_chooseColorActionPerformed
-        someColor = javax.swing.JColorChooser.showDialog(null, "Elija", java.awt.Color.WHITE);
-        if(someColor != null){
-            this.paitingBoard.setBackground(someColor);
+        backgroundColor = javax.swing.JColorChooser.showDialog(null, "Elija", java.awt.Color.WHITE);
+        if(backgroundColor != null){
+            this.paitingBoard.setBackground(backgroundColor);
         }
     }//GEN-LAST:event_jButton_chooseColorActionPerformed
 
@@ -511,26 +510,23 @@ public class MainFrame extends javax.swing.JFrame{
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         colorSelected(jButton20);
     }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jPanel_basePaitingBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_basePaitingBoardMouseClicked
-        /**
-        java.awt.Color aux = new java.awt.Color(238, 238, 238);
-        java.awt.Color someColor = jPanel_colorSelected.getBackground();
-        if(someColor.getRGB() != aux.getRGB()){
-            //jPanel_paitingBoard.setBackground(someColor);
-        }
-        */
-    }//GEN-LAST:event_jPanel_basePaitingBoardMouseClicked
    
     private void colorSelected(javax.swing.JButton btn){
-        this.jPanel_colorSelected.setBackground(btn.getBackground());
+        colorSelected = btn.getBackground();
+        setColorJPanel_PaitingBoard(colorSelected);
+        this.jPanel_colorSelected.setBackground(colorSelected);
     }
     
     private void addMenuItem(){
+        ArrayList<javax.swing.JMenuItem> items = new ArrayList<>();
+        
         String[] data = {"Nuevo", "Nueva Ventana", "Abrir", "Guardar", "Guardar Como"};
         for(String d : data){
-            jMenu.add(new javax.swing.JMenuItem(d));
+            javax.swing.JMenuItem item = new javax.swing.JMenuItem(d);
+            items.add(item);
+            jMenu.add(item);
         }
+        
     }
     
     private void loadPanel(){
@@ -540,6 +536,9 @@ public class MainFrame extends javax.swing.JFrame{
         this.jPanel_basePaitingBoard.repaint();
     }
     
+    private void setColorJPanel_PaitingBoard(java.awt.Color c){
+        this.paitingBoard.setColorSelected(c);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -568,7 +567,8 @@ public class MainFrame extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel_basePaitingBoard;
     private javax.swing.JPanel jPanel_colorSelected;
     // End of variables declaration//GEN-END:variables
-    private java.awt.Color someColor;
+    private java.awt.Color colorSelected;
+    private java.awt.Color backgroundColor;
     private ArrayList<javax.swing.JMenuItem> menuItems;
     private final JPanel_PaitingBoard paitingBoard;
 }
